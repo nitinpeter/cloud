@@ -1,0 +1,5 @@
+log_level: warning
+auto_accept: true
+failhard: true
+state_output: changes
+timeout: 60

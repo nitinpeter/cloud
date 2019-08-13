@@ -1,0 +1,39 @@
+version: '3'
+
+services:
+  salt-master:
+    depends_on:
+	  - base-7.3.1611
+	container_name: 'saltmaster'
+	image: 'saltmaster'
+	hostname: 'saltmaster'
+	privileged: true
+	volumes:
+	- .:/srv
+	build:
+	  context: './test'
+	  dockerfile: 'docker/saltmaster.Dockerfile'
+	  args:
+	    CENTOSVERSION: '7.3.1611'
+		CONFIGDIR: 'master'
+  salt-minion:
+    depends_on:
+	  - base-7.3.1611
+	container_name: 'saltminion'
+	image: 'saltminion'
+	hostname: 'saltminion'
+	privileged: true
+	build:
+	  context: './test'
+	  dockerfile: 'docker/saltminion.Dockerfile'
+	  args:
+	    CENTOSVERSION: '7.3.1611'
+		CONFIGDIR: 'minion'
+  base-7.3.1611:
+    command: /bin/bash -c exit
+	image: 'base:7.3.1611'
+	build:
+	  context: './test'
+	  dockerfile: '.docker/Dockerfile'
+	  args:
+	    CENTOSVERSION: '7.3.1611'

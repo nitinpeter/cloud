@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  centosalt1:
+    build: ../mongosalt
+	image: 'centosalt'
+	hostname: 'devmongo'
+	privileged: true
+    ports:
+      - 27027:27017
+  centosalt2:
+    build: ../mongosalt
+	image: 'centosalt'
+	hostname: 'qamongo'
+	privileged: true
+    ports:
+      - 27028:27017
