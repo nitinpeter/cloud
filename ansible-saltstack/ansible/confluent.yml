@@ -1,0 +1,15 @@
+- name: Copy confluent repo
+  copy:
+    src: conflent.repo
+    dest: /etc/yum.repos.d/confluent.repo
+    backup: yes
+	
+- name: yum-clean-all
+  command: yum clean all
+
+
+- name: install the latest version of Apache from the testing repo
+  yum:
+    name: confluent-platform-oss-2.11
+    enablerepo: confluent
+    state: present

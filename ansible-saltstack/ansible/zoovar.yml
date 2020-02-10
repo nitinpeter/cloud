@@ -1,0 +1,12 @@
+---
+zoovars:
+  {
+   "attributes":[
+     "datadir": "/var/lib/confluentdata"
+     "ticktime": "2000"
+   ],
+   "ports": [
+     "clientport": "2181"
+   ]
+  }
+...

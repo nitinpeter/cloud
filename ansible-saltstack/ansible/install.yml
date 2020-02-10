@@ -1,0 +1,43 @@
+- name: Add group confluent
+  group:
+     name: confluent
+     gid: 606
+     state: present 
+
+- name: Add user confluent
+  user:
+     name: confluent
+     comment: "kafka-zookeeper"
+     uid: 606
+     group: confluent
+     shell: /bin/bash
+     createhome: no
+
+- name: Create the lv_conf Logical Volume.
+  lvol:
+     vg: vg00
+     lv: lv_conf
+     size: 5G
+     active: yes
+     force: no
+     state: present
+    
+- name: format the filesystem 
+  filesystem:
+     fstype: xfs
+     dev: "/dev/mapper/vg00-lv_conf"
+     force: no
+
+- name: Create directory 
+  file:
+     path: /var/lib/confluent
+     state: directory
+     mode: '0755'
+
+- name: Mount the filesystem.
+  mount:
+     path: /var/lib/confluent
+     src: "/dev/mapper/vg00-lv_conf"
+     fstype: xfs
+     opts: defaults
+     state: mounted

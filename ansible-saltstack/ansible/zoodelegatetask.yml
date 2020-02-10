@@ -1,0 +1,7 @@
+- name: "Template"
+  template:
+    src: zookeeper.jinja
+	dest: /etc/confluentkafka/zookeeper.properties
+  delegate_to: "{{ item }}"
+  tags: ex99
+  ignore_errors: true

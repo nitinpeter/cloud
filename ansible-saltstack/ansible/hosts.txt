@@ -1,0 +1,9 @@
+hosts1:
+  zhosts:
+	zoonode1
+	zoonode2
+	zoonode3
+  khosts:
+	kafkanode1
+	kafkanode2
+	kafkanode3

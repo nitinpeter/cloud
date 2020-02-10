@@ -1,0 +1,8 @@
+- shell: >
+    ip r l| grep src| awk '{print $NF}'
+  delegate_to: "{{ item }}"
+  register: result
+- set_fact:
+    zooips: "{{ zooips | default([]) + [result.stdout] }}"
+- debug:
+    msg: zooips

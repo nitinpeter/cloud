@@ -1,0 +1,33 @@
+- hosts: localhost
+  become: yes
+  become_method: sudo
+  become_user: root
+  
+  vars_files:
+    zoovars.yml
+  
+  tasks:
+
+    - debug:
+	    var: zoovars
+
+    - name: "get datadir"
+	  debug:
+	    msg: "{{ zoovars | json_query(zoodir) }}"
+	  vars:
+	    zoodir: "attributes.datadir"
+	  tags: ex08
+	
+	- set_fact:
+	    datadir: "{{ zoovars.attributes[0].datadir }}"
+      when: true
+	  
+	- name: delegate include
+	  include: zooiptask.yml
+	  loop: "{{ groups['hosts1'] }}"
+	  delegate_to: "{{ item }}"
+
+    - name: delegate include
+	  include: zoodelegatetask.yml
+	  loop: "{{ groups['hosts1'] }}"
+	  delegate_to: "{{ item }}"
