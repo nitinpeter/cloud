@@ -1,1 +1,1 @@
-# cloud and container configurations and scripts here
+# cloud and container configurations/orchestration and cicd scripts here
