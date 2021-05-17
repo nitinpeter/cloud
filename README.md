@@ -1,1 +1,1 @@
-# space for virutualization and container scripts
+# cloud and container configurations and scripts here
