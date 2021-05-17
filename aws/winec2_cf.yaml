@@ -1,3 +1,4 @@
+#Aws cloudformation template for a custom windows web-server with apps build on boottime
 AWSTemplateFormatVersion: 2010-09-09
 Parameters:
   KeyName:
